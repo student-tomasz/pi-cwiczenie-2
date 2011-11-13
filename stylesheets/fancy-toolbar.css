@@ -1,8 +1,13 @@
+/*
+ *  place icons at center of toolbar's parent
+ *  styles should match the mouseout state of FancyToolbar
+ */
+
 #fancy-toolbar {
   list-style: none;
-  text-align: center;
-  margin: 64px auto;
+  margin: 0 auto;
   padding: 0;
+  height: 128px;
   width: 512px;
 }
 
@@ -18,4 +23,39 @@
 .ft-item img {
   height: 100%;
   width: 100%;
+}
+
+
+
+/*
+ *  swag
+ */
+html {
+  background: url('../images/dots-pattern.jpg') repeat center top;
+  /* background: url('../images/stripes-wide-pattern.jpg') repeat center top;*/
+}
+
+#fancy-toolbar-stage {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.67);
+  border: #333 3px solid;
+  border-radius: 12px;
+  box-shadow: inset 0 0 16px #333;
+  margin-top: 1em;
+}
+
+.wf-patrickhand-n4-active #fancy-toolbar-stage h1 {
+  font-family: 'Patrick Hand';
+  font-size: 2em;
+  margin: 0.5em 1em;
+}
+
+#fancy-toolbar-stage #fancy-toolbar {
+  padding-bottom: 16px;
+  overflow: hidden;
+}
+
+#fancy-toolbar-stage #fancy-toolbar .ft-item {
+  -webkit-box-reflect:
+    below -12px -webkit-linear-gradient(bottom, rgba(255,255,255,0.6) 10%, rgba(255,255,255,0.2) 80%);
 }
