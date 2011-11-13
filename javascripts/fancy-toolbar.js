@@ -79,9 +79,8 @@ function FancyToolbar(id, width, scale, range) {
     for (var i = 0; i < items.length; i++) {
       if (items[i] == event.target.parentNode) target = items[i];
     }
-
-    if (target && event.offsetX) {
-      var half = event.offsetX / target.width - 0.5;
+    if (target) {
+      var half = (event.clientX - target.offsetLeft) / target.width - 0.5;
       for (var index = 0; index < items.length; index++) {
         var item = items[index];
         if (Math.abs(item.index - target.index) > range) { // outside range
