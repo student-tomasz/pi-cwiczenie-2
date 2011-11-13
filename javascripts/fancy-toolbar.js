@@ -9,8 +9,10 @@ function FancyToolbar(id, width, scale, range) {
   var items   = [];
 
   // fields for animations
-  var factor    = 0.0;
-  var growing   = null;
+  var factor         = 0.0;
+  var growing        = null;
+  var shrinking      = null;
+  var shrinkingDelay = null;
 
 
 
@@ -40,9 +42,9 @@ function FancyToolbar(id, width, scale, range) {
     }
 
     for (var i = 0; i < items.length; i++) {
-      console.log(items[i]);
       items[i].addEventListener('mouseover', magnify, false);
       items[i].addEventListener('mousemove', resize,  false);
+      items[i].addEventListener('mouseout',  shrink,  false);
     }
   }
 
@@ -53,6 +55,11 @@ function FancyToolbar(id, width, scale, range) {
   //
 
   function magnify() {
+    window.clearInterval(shrinking);
+    shrinking = null;
+    window.clearTimeout(shrinkingDelay);
+    shrinkingDelay = null;
+
     if (factor != 1 && !growing) {
       growing = window.setInterval(
         function() {
@@ -73,21 +80,43 @@ function FancyToolbar(id, width, scale, range) {
       if (items[i] == event.target.parentNode) target = items[i];
     }
 
-    var half = event.offsetX / target.width - 0.5;
-    for (var index = 0; index < items.length; index++) {
-      var item = items[index];
-      if (Math.abs(item.index - target.index) > range) { // outside range
-        item.width = width;
-      }
-      else { // inside range
-        var magic = Math.cos((item.index-target.index-half)/range*Math.PI/2);
-        if (magic < 0 || magic > 1) magic = 0;
-        item.width = width + Math.round(width * (scale-1) * magic);
+    if (target && event.offsetX) {
+      var half = event.offsetX / target.width - 0.5;
+      for (var index = 0; index < items.length; index++) {
+        var item = items[index];
+        if (Math.abs(item.index - target.index) > range) { // outside range
+          item.width = width;
+        }
+        else { // inside range
+          var magic = Math.cos((item.index-target.index-half)/range*Math.PI/2);
+          if (magic < 0 || magic > 1) magic = 0;
+          item.width = width + Math.round(width * (scale-1) * magic);
+        }
       }
     }
 
     redraw();
   };
+
+  function shrink() {
+    window.clearInterval(growing);
+    growing = null;
+
+    shrinkingDelay = window.setInterval(function() {
+      if (factor != 0 && !shrinking) {
+        shrinking = window.setInterval(
+          function() {
+            factor -= 0.075;
+            if (factor <= 0) {
+              factor = 0;
+              window.clearInterval(shrinking);
+              shrinking = null;
+            }
+            redraw();
+          }, 10);
+      }
+    }, 100);
+  }
 
 
 
