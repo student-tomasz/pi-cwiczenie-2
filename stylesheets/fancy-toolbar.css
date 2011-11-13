@@ -1,19 +1,20 @@
 #fancy-toolbar {
   list-style: none;
+  text-align: center;
   margin: 64px auto 0 auto;
   padding: 0;
-  width: 512px;  /* 64px × 8 = 512px */
+  width: 100%;
 }
 
 .ft-item {
   cursor: pointer;
-  display: block;
-  float: left;
+  display: inline-block;
   margin-top: 64px;
+  height: 64px;
+  width: 64px;
 }
 
 .ft-item img {
-  display: block;
-  height: 64px;
-  width: 64px;
+  height: 100%;
+  width: 100%;
 }
