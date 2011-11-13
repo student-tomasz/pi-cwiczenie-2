@@ -9,10 +9,9 @@ function FancyToolbar(id, width, scale, range) {
   var items   = [];
 
   // fields for animations
-  var factor         = 0.0;
-  var growing        = null;
-  var shrinking      = null;
-  var shrinkingDelay = null;
+  var factor    = 0.0;
+  var growing   = null;
+  var shrinking = null;
 
 
 
@@ -57,8 +56,6 @@ function FancyToolbar(id, width, scale, range) {
   function magnify() {
     window.clearInterval(shrinking);
     shrinking = null;
-    window.clearTimeout(shrinkingDelay);
-    shrinkingDelay = null;
 
     if (factor != 1 && !growing) {
       growing = window.setInterval(
@@ -89,7 +86,7 @@ function FancyToolbar(id, width, scale, range) {
         else { // inside range
           var magic = Math.cos((item.index-target.index-half)/range*Math.PI/2);
           if (magic < 0) magic = 0;
-          item.width = width + Math.round(width * (scale-1) * magic);
+          item.width = width + width * (scale-1) * magic;
         }
       }
     }
@@ -101,20 +98,18 @@ function FancyToolbar(id, width, scale, range) {
     window.clearInterval(growing);
     growing = null;
 
-    shrinkingDelay = window.setInterval(function() {
-      if (factor != 0 && !shrinking) {
-        shrinking = window.setInterval(
-          function() {
-            factor -= 0.075;
-            if (factor <= 0) {
-              factor = 0;
-              window.clearInterval(shrinking);
-              shrinking = null;
-            }
-            redraw();
-          }, 10);
-      }
-    }, 100);
+    if (factor != 0 && !shrinking) {
+      shrinking = window.setInterval(
+        function() {
+          factor -= 0.075;
+          if (factor <= 0) {
+            factor = 0;
+            window.clearInterval(shrinking);
+            shrinking = null;
+          }
+          redraw();
+        }, 10);
+    }
   }
 
 
@@ -124,13 +119,18 @@ function FancyToolbar(id, width, scale, range) {
   //
 
   var redraw = function() {
+    var total = 0;
+
     for (var i = 0; i < items.length; i++) {
-      var actual = width + factor * (items[i].width - width);
+      var actual = width + Math.round(factor * (items[i].width - width));
+      total += actual;
 
       items[i].style.height = actual + 'px';
       items[i].style.width  = actual + 'px';
       items[i].style.marginTop = width * scale - actual + 'px';
     }
+
+    toolbar.style.width = total + 'px';
   };
 
 };
