@@ -89,7 +89,7 @@ function FancyToolbar(id, width, scale, range) {
         }
         else { // inside range
           var magic = Math.cos((item.index-target.index-half)/range*Math.PI/2);
-          if (magic < 0 || magic > 1) magic = 0;
+          if (magic < 0) magic = 0;
           item.width = width + Math.round(width * (scale-1) * magic);
         }
       }
