@@ -44,7 +44,14 @@ html {
   margin-top: 1em;
 }
 
-.wf-patrickhand-n4-active #fancy-toolbar-stage h1 {
+@font-face {
+  font-family: 'Patrick Hand';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PatrickHand'), local('PatrickHand-Regular'), url('../fonts/PatrickHand-Regular.ttf');
+}
+
+#fancy-toolbar-stage h1 {
   font-family: 'Patrick Hand';
   font-size: 2em;
   margin: 0.5em 1em;
