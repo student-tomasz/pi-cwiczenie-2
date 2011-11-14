@@ -31,7 +31,7 @@
  *  swag
  */
 html {
-  background: url('../images/dots-pattern.jpg') repeat center top;
+  background: rgb(215,205,185) url('../images/dots-pattern.jpg') repeat center top;
   /* background: url('../images/stripes-wide-pattern.jpg') repeat center top;*/
 }
 
