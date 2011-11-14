@@ -1,4 +1,4 @@
-function FancyToolbar(id, width, scale, range) {
+function FancyToolbar(id) {
 
   //
   //  fields
@@ -19,10 +19,10 @@ function FancyToolbar(id, width, scale, range) {
   // initializer
   //
 
-  // normalize arguments
-  width = width || 64;
-  scale = scale || 2.0;
-  range = range || 2;
+  // set arguments
+  width = 64;
+  scale = 2.0;
+  range = 2;
 
   // get the toolbar node
   toolbar = document.getElementById(id);
