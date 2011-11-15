@@ -18,6 +18,5 @@
 
 ## Grafika
 
-* [Blue and Beige Patterns - part 3](http://webtreatsetc.deviantart.com/art/Blue-and-Beige-Patterns-Part-3-187951829) by [~WebTreatsETC](http://webtreatsetc.deviantart.com/)
 * [Buuf Deuce](http://mattahan.deviantart.com/art/Buuf-Deuce-72080962) by [*mattahan](http://mattahan.deviantart.com/)
 * [Patrick Hand](http://sirpatrick1st.deviantart.com/art/Patrick-Hand-182217440) by [~SirPatrick1st](http://sirpatrick1st.deviantart.com/)
